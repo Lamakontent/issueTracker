@@ -44,7 +44,7 @@ public class UserControllerTest {
     private List<User> users;
 
     @BeforeEach
-    void setUp() {
+    void setUp() { //ARANGE
         users = new ArrayList<>() {{
             add(new User(1L, "Machin", Fonction.USER));
             add(new User(2L, "Chose", Fonction.DEVELOPPER));
@@ -61,8 +61,8 @@ public class UserControllerTest {
     @Test
     void whenGettingAll_shouldGet6_andBe200() throws Exception {
         mockMvc.perform(get("/users")
-                .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isOk()
+                .contentType(MediaType.APPLICATION_JSON) //ACT
+        ).andExpect(status().isOk() //ASSERT
         ).andExpect(jsonPath("$", hasSize(6))
         ).andDo(print());
     }

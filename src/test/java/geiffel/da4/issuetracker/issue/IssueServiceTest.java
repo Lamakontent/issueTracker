@@ -21,16 +21,16 @@ public class IssueServiceTest {
 
     private IssueService issueService;
     private List<Issue> issues;
-    private User author = Mockito.mock(User.class);
+    private final User author = Mockito.mock(User.class);
 
     @BeforeEach
     void setUp() {
         issues = new ArrayList<>(){{
-            add(new Issue(1L, "blah", "some content1", author));
+            add(new Issue(1L, "blah", "some content1",  author));
             add(new Issue(2L, "bleuh", "some content2", author));
-            add(new Issue(3L, "blih", "some content3", author));
-            add(new Issue(4L, "bloh", "some content4", author));
-            add(new Issue(5L, "bluh", "some content5", author));
+            add(new Issue(3L, "blih", "some content3",  author));
+            add(new Issue(4L, "bloh", "some content4",  author));
+            add(new Issue(5L, "bluh", "some content5",  author));
         }};
         issueService = new IssueLocalService(issues);
     }
@@ -101,6 +101,4 @@ public class IssueServiceTest {
                 () -> assertThrows(ResourceNotFoundException.class, ()->issueService.getByCode(code))
         );
     }
-
-
 }

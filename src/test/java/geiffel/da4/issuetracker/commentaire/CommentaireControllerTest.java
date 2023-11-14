@@ -1,9 +1,14 @@
 package geiffel.da4.issuetracker.commentaire;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import geiffel.da4.issuetracker.comentaire.CommentaireController;
+import geiffel.da4.issuetracker.comentaire.Commentaire;
+import geiffel.da4.issuetracker.comentaire.CommentaireController;
+import geiffel.da4.issuetracker.comentaire.CommentaireService;
 import geiffel.da4.issuetracker.exceptions.ExceptionHandlingAdvice;
 import geiffel.da4.issuetracker.exceptions.ResourceAlreadyExistsException;
 import geiffel.da4.issuetracker.exceptions.ResourceNotFoundException;
+import geiffel.da4.issuetracker.issue.Issue;
 import geiffel.da4.issuetracker.user.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -93,6 +98,7 @@ public class CommentaireControllerTest {
     void whenCreating_shouldReturnIsCreated_andShouldReturnURL() throws Exception {
         Long id = 78L;
         Commentaire toCreate = new Commentaire(id, mock(User.class), mock(Issue.class), "To create");
+        when(commentaireService.create(any())).thenReturn(toCreate);
 
         mockMvc.perform(post("/commentaires")
                 .contentType(MediaType.APPLICATION_JSON)

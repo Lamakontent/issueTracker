@@ -1,18 +1,16 @@
 package geiffel.da4.issuetracker.issue;
 
-import geiffel.da4.issuetracker.user.User;
-import org.springframework.http.ResponseEntity;
-
 import java.util.List;
 
 public interface IssueService {
+
     List<Issue> getAll();
 
-    User getByCode(Long l);
+    void update(Long param1, Issue param2);
 
-    ResponseEntity<Object> update(Long l, Issue capture);
+    Issue getByCode(Long code);
 
-    Issue create(Issue any);
+    Issue create(Issue param1);
 
-    ResponseEntity<Object> delete(Long capture);
+    void delete(Long code);
 }

@@ -2,6 +2,10 @@ package geiffel.da4.issuetracker.commentaire;
 
 
 
+import geiffel.da4.issuetracker.comentaire.Commentaire;
+import geiffel.da4.issuetracker.comentaire.CommentaireLocalService;
+import geiffel.da4.issuetracker.comentaire.CommentaireService;
+import geiffel.da4.issuetracker.issue.Issue;
 import geiffel.da4.issuetracker.user.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
@@ -45,7 +49,7 @@ public class CommentaireServiceTest {
             add(new Commentaire(5L, user2, issue2,"Contenu 5"));
         }};
 
-        commentaireService = new CommentaireLocalService(commentaires);
+        commentaireService = (CommentaireService) new CommentaireLocalService(commentaires);
 
     }
 
@@ -55,7 +59,7 @@ public class CommentaireServiceTest {
         assertEquals(5, commentaireService.getAll().size());
     }
 
-    @Test
+   @Test
     void whenGettingById_shouldReturnCorrectCommentaire() {
         Commentaire expected_comment = commentaires.get(0);
 

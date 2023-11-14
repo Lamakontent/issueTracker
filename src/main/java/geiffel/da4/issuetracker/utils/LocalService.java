@@ -2,6 +2,7 @@ package geiffel.da4.issuetracker.utils;
 
 
 import geiffel.da4.issuetracker.exceptions.ResourceNotFoundException;
+import geiffel.da4.issuetracker.issue.Issue;
 
 import java.beans.PropertyDescriptor;
 import java.util.ArrayList;

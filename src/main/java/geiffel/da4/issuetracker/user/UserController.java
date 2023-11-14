@@ -1,14 +1,17 @@
 package geiffel.da4.issuetracker.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
 
-@RestController
+@RestController //ICI
 @RequestMapping("/users")
+@CrossOrigin(origins = "*")
 public class UserController {
 
     private UserService userService;
@@ -35,7 +38,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity updateUser(@PathVariable Long id, @RequestBody User user) {
+    public ResponseEntity updateUser(@PathVariable("id") Long id, @RequestBody User user) {
         userService.update(id, user);
         return ResponseEntity.noContent().build();
     }

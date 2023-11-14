@@ -4,15 +4,15 @@ import geiffel.da4.issuetracker.exceptions.ResourceAlreadyExistsException;
 import geiffel.da4.issuetracker.exceptions.ResourceNotFoundException;
 import geiffel.da4.issuetracker.user.User;
 import geiffel.da4.issuetracker.utils.LocalService;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class IssueLocalService extends LocalService<Issue, Long> implements IssueService {
 
+    public IssueLocalService(){
 
-
-    private IssueService issueService;
+    }
     public IssueLocalService(List<Issue> issues) {
         super(issues);
     }
@@ -22,45 +22,43 @@ public class IssueLocalService extends LocalService<Issue, Long> implements Issu
         return "code";
     }
 
+
     @Override
     public List<Issue> getAll() {
         return super.getAll();
     }
 
     @Override
-    public User getByCode(Long l) {
-        return getByIdentifier(l);
-    }
-
-    public IndexAndValue<Issue> findByCode(long l){
-        return super.findByProperty(l);
-    }
-
-    @Override
-    public ResponseEntity<Object> update(Long l, Issue capture) throws ResourceNotFoundException {
-
-        IndexAndValue<Issue> found = this.findByCode(l);
+    public void update(Long code, Issue issue) {
+        IndexAndValue<Issue> found = this.findByCode(code);
         this.allValues.remove(found.index());
-        this.allValues.add(found.index(), capture);
-        return null;
+        this.allValues.add(found.index(), issue);
     }
 
     @Override
-    public Issue create(Issue toCreate) {
+    public Issue getByCode(Long param1) {
+        return super.getByIdentifier(param1);
+    }
+
+    @Override
+    public Issue create(Issue param1) {
         try {
-            this.findByCode(toCreate.getCode());
-            throw new ResourceAlreadyExistsException("Issue", toCreate.getId());
+            this.findByCode(param1.getCode());
+            throw new ResourceAlreadyExistsException("Issue", param1.getCode());
         } catch (ResourceNotFoundException e) {
-            this.allValues.add(toCreate);
-            return toCreate;
+            this.allValues.add(param1);
+            return param1;
         }
     }
 
-    @Override
-    public ResponseEntity<Object> delete(Long capture) {
-        IndexAndValue<Issue> found = this.findByCode(capture);
-        this.allValues.remove(found.value());
-        return null;
+    public IndexAndValue<Issue> findByCode(Long param1){
+
+        return super.findByProperty(param1);
     }
 
+    @Override
+    public void delete(Long param1) {
+        IndexAndValue<Issue> found = this.findByCode(param1);
+        this.allValues.remove(found.value());
+    }
 }
