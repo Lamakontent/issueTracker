@@ -1,0 +1,27 @@
+###
+GET http://localhost:8080/users
+
+<> 2023-09-13T163231.200.json
+
+###
+GET http://localhost:8080/users/5
+
+<> 2023-09-13T163331.404.txt
+<> 2023-09-13T163318.200.json
+
+###
+GET http://localhost:8080/users
+
+<> 2023-09-13T165147.200.json
+
+###
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{  "id": 8,
+  "nom": "Machin",
+  "fonction": "USER"
+}
+
+<> 2023-09-13T174032.409.txt
+<> 2023-09-13T171135.409.txt
