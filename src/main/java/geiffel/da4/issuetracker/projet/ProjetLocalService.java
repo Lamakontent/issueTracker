@@ -1,10 +1,7 @@
 package geiffel.da4.issuetracker.projet;
 
-import geiffel.da4.issuetracker.comentaire.Commentaire;
 import geiffel.da4.issuetracker.exceptions.ResourceAlreadyExistsException;
 import geiffel.da4.issuetracker.exceptions.ResourceNotFoundException;
-import geiffel.da4.issuetracker.issue.Issue;
-import geiffel.da4.issuetracker.user.User;
 import geiffel.da4.issuetracker.utils.LocalService;
 
 import java.util.List;

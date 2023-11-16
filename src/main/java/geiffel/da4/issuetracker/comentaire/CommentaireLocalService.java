@@ -1,10 +1,7 @@
 package geiffel.da4.issuetracker.comentaire;
 
-import geiffel.da4.issuetracker.comentaire.Commentaire;
 import geiffel.da4.issuetracker.exceptions.ResourceAlreadyExistsException;
 import geiffel.da4.issuetracker.exceptions.ResourceNotFoundException;
-import geiffel.da4.issuetracker.issue.Issue;
-import geiffel.da4.issuetracker.user.User;
 import geiffel.da4.issuetracker.utils.LocalService;
 import org.springframework.stereotype.Service;
 
@@ -55,7 +52,7 @@ public class CommentaireLocalService extends LocalService<Commentaire, Long> imp
 
     @Override
     public List<Commentaire> getAllByIssueCode(Long param) {
-        return super.getAll().stream().filter(commentaire -> commentaire.getIssueCode()==param).toList();
+        return super.getAll().stream().filter(commentaire -> Objects.equals(commentaire.getIssueCode(), param)).toList();
     }
 
     @Override

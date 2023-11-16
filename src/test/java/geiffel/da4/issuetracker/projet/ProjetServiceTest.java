@@ -2,7 +2,7 @@ package geiffel.da4.issuetracker.projet;
 
 import geiffel.da4.issuetracker.exceptions.ResourceAlreadyExistsException;
 import geiffel.da4.issuetracker.exceptions.ResourceNotFoundException;
-import geiffel.da4.issuetracker.issue.Issue;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,13 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static sun.net.InetAddressCachePolicy.get;
 
 public class ProjetServiceTest {
 
     private ProjetService projetService;
 
     private List<Projet> projet;
+    private Assertions Assert;
 
     @BeforeEach
     void setUp() {
@@ -98,6 +99,23 @@ public class ProjetServiceTest {
         Projet projet = new Projet(4L,"leNom");
         assertThrows(ResourceNotFoundException.class, () -> projetService.delete(projet.getId()));
 
+    }
+
+    @Test
+    public void testToString() {
+        Object obj = get();
+        Assert.assertThrows(IndexOutOfBoundsException.class, () -> obj.toString());
+    }
+
+    @Test
+    public void testToStringTryCatchIdiom() {
+        Object obj = get();
+        try {
+            obj.toString();
+            Assert.fail("Expected an IndexOutOfBoundsException to be thrown");
+        } catch (IndexOutOfBoundsException e) {
+            // Test exception message...
+        }
     }
 
 }
